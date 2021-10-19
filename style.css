@@ -1,15 +1,31 @@
 *{
     padding:0;
     margin:0;
-    list-style-type: none;
-    
+    list-style-type: none; 
+    font-family: "DM Sans", sans-serif;
+    text-decoration: none;
 }
+/* principales couleurs 
 
+rouge : #901C1C
+ROUGE NOM ARTISTE : #D3573C
+ORANGE : #DB8876
+BLANC : #525252 
+GRIS : #FAFAFA
+
+*/
+.global{
+    max-width: 1440px;
+    margin: auto;
+    position: relative;
+    color: #901C1C;
+}
 header{
     margin: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: calc(100% - 580px);
 }
 
 header ul{
@@ -25,8 +41,27 @@ header ul a{
     border: 1px solid lightgrey;
     border-radius: 25px;
     padding: 4px 8px;
-    color: red;
+    color:#901C1C;
 }
 header img{
     width: 250px;
+    margin-left: 20px;
+    margin-right: 50px;
+}
+h1 {
+    min-width: 198px;
+    position: absolute;
+    top: 32px;
+    right: 60px;
+    color: #901C1C;
+    margin-right: 20px;
+}
+
+#photographers img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+#photographers h2{
+    color: #D3573C ;
 }
