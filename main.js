@@ -1,3 +1,5 @@
+// recuperer les données json 
+
 async function GetDataFishEye() {
     const url = 'photographers.json';
     const response = await fetch(url) ; 
@@ -8,6 +10,7 @@ async function GetDataFishEye() {
 
 GetDataFishEye()
 
+// utiliser la fonction pour construire les profils
 
 function displayPhotographers(data) { 
     let photographers = data.photographers;
@@ -17,7 +20,6 @@ function displayPhotographers(data) {
 
             let articlePhotographers = document.createElement('article');
 
-            
             let templatePhotographer = `
             <a href="photographers.html?id=${photographe.id}" title="${photographe.name}">
                 <img src="img/${photographe.portrait}">
@@ -29,9 +31,15 @@ function displayPhotographers(data) {
             <ul class="filter">${photographe.tags.map(tag =>
                 `<li data-filter="${tag}">#${tag}</li>`).join(" ")}</ul> 
             `
-
+            
             sectionPhotographers.appendChild(articlePhotographers);
             articlePhotographers.innerHTML = templatePhotographer;
         })
 }
+
+
+// Ajouter la selection par tag test sur mon h1 
+
+// if ( tag include "travel") display block  return true ;
+// else ( display none ) console.log("filtrage")
 
