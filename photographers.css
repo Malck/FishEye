@@ -1,0 +1,196 @@
+article {
+    width: 100%;
+}
+
+article img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    margin-right: 50px;
+}
+article p {
+    margin-bottom: 15px;
+}
+.photographer_infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1250px;
+    height: 300px;
+    background: #FAFAFA;
+    padding: 20px;
+}
+.photographer_text{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    margin-left: 50px;
+}
+.photographer_text h2{
+    color: #D3573C ;
+    font-size: 40px;
+    padding-bottom: 18px;
+}
+
+.photographer_text .location{
+    color: #901C1C;
+    font-size: 16px;
+    /*font-size: 16px meilleur size */
+}
+
+.photographer_text .tagline{
+    font-size: 14px;
+}
+
+/* Bouton de la form contacteme */ 
+button.btn-signup.modal-btn {
+    position: absolute;
+    left: 700px;
+    top: 110px;
+    background: #911C1C;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 15px 10px;
+    font-size: 18px;
+    border: gray;
+}
+#photographerPage {
+    position: relative;
+}
+
+
+/* ***************** utilisation d'image depuis le html pour tester la mise en place */
+
+.images img{
+ width: 250px;
+ height: 250px;
+ object-fit: cover;
+}
+.images video{
+    width: 250px;
+ height: 250px;
+ object-fit: cover;
+ 
+
+}
+figure {
+    padding: 50px;
+}
+section.images {
+    display: flex;
+    justify-content: space-between;
+    height: 900px;
+    flex-wrap: wrap;
+}
+
+/* formulaire style */
+.modal-body {
+    padding: 15px 8%;
+    margin: 15px auto;
+}
+label {
+    font-family: var(--font-default);
+    font-size: 36px;
+    font-weight: normal;
+    display: inline-block;
+    margin-bottom: 11px;
+    margin-top: 5px;  
+  
+}
+input {
+    padding: 8px;
+    border: 0.8px solid #ccc;
+    outline: none;
+}
+.text-control {
+    margin: 0;
+    padding: 8px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+input.btn-submit.button {
+    background: #911C1C;
+    border-radius: 5px;
+    border: white;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 25px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.bground {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgb(236 236 243 / 55%);
+}
+
+.content {
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  background: #DB8876;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  padding-top: 10px;
+}
+
+/* formulaire champs verifiés */
+.formData small{
+    visibility: hidden;
+    font-size: 18px;
+}
+.formData.success input{
+    border-color:#2ecc71;
+}
+.formData.error input{
+    border-color:#e54858;
+}
+  
+.formData.error small{
+    color: #e54858;
+    visibility: visible;
+}
+  
+.formData{
+    color: white;
+}
+  
+.hidden{
+    display: none;
+}

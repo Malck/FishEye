@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FishEye</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="photographers.css">
+    <script type="module" src="photographers.js"></script>
+
+    <script src="modal.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <a class="home" href="index.html">
+            <img src="img/fisheye-logo.png" alt="Logo du site">
+        </a>
+    </header>
+
+    <main>
+
+    <section id="photographerPage" aria-label="photographerPage">
+     <!-- fill with photographers.js -->
+     <div class="contact"> 
+        <button class="btn-signup modal-btn"> Contactez-moi </button>
+     </div>
+    </section>
+    
+    <!-- Creer la modale formulaire -->
+    <div class="bground">
+
+        <div class="content">
+          <span class="close" id="close"></span>
+          
+          <div class="modal-body">
+            <form id="form"
+              name="reserve"
+              action="index.html"
+              method="get"
+              onsubmit="return checkInputs();">
+
+              <div class="formData">
+                <label for="first">Prénom</label><br>
+                <input
+                  class="text-control"
+                  type="text"
+                  id="first"
+                  name="first"
+                  />
+                  <small>Error message</small>
+              </div>
+
+              <div class="formData">
+                <label for="last">Nom</label><br>
+                <input
+                  class="text-control"
+                  type="text"
+                  id="last"
+                  name="last"/>
+                <small>Error message</small>
+              </div>
+
+              <div class="formData">
+                <label for="email">Email</label><br>
+                <input
+                  class="text-control"
+                  type="email"
+                  id="email"
+                  name="email"/>
+                <small>Error message</small>
+              </div>
+
+              <input
+                class="btn-submit button"
+                type="submit"
+                value="Envoyer"/>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!--menu dropdown -->
+
+    <section class="images">
+
+    <figure>
+        <img src="img/Ellie Rose/Architecture_Connected_Curves.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Architecture_Cross_Bar.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Architecture_Horseshoe.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Architecture_Water_on_Modern.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Architecture_White_Light.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Sport_Jump.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Sport_Next_Hold.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Sport_Race_End.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/Sport_Sky_Cross.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <video src="img/Ellie Rose/Sport_Tricks_in_the_air.mp4">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    <figure>
+        <img src="img/Ellie Rose/sport_water_tunnel.jpg">
+        <figcaption>Text test </figcaption>
+    </figure>
+
+    </section>
+
+    <!--Lightbox -->
+    </main>
+
+</body>
+</html>
