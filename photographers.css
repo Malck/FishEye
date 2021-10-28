@@ -1,3 +1,11 @@
+*{
+    padding:0;
+    margin:0;
+    list-style-type: none; 
+    font-family: "DM Sans", sans-serif;
+    text-decoration: none;
+}
+
 article {
     width: 100%;
 }
@@ -46,16 +54,20 @@ article p {
 
 /* Bouton de la form contacteme */ 
 button.btn-signup.modal-btn {
-    position: absolute;
-    left: 700px;
-    top: 110px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 40%;
+    width: 150px;
     background: #911C1C;
-    border-radius: 5px;
     color: #FFFFFF;
     padding: 15px 10px;
-    font-size: 18px;
     border: gray;
+    border-radius: 5px;
+    font-size: 18px;
 }
+
 #photographerPage {
     position: relative;
 }
@@ -107,9 +119,10 @@ input {
 .text-control {
     margin: 0;
     padding: 8px;
-    width: 100%;
+    width: 95%;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 22px;
+    height: 40px;
 }
 
 input.btn-submit.button {
@@ -119,13 +132,16 @@ input.btn-submit.button {
     color: white;
     font-size: 18px;
     padding: 10px 20px;
+    margin-top: 10px;
+    height: 50px;
+    width: 150px;
 }
 
-
+/* La croix de fermeture du formulaire */
 .close {
   position: absolute;
   right: 15px;
-  top: 25px;
+  top: 18px;
   width: 32px;
   height: 32px;
   opacity: 1;
@@ -170,27 +186,61 @@ input.btn-submit.button {
   padding-top: 10px;
 }
 
-/* formulaire champs verifiés */
+/* formulaire champs verifiés en action avec js */
 .formData small{
     visibility: hidden;
     font-size: 18px;
 }
 .formData.success input{
-    border-color:#2ecc71;
+    border-color:#FAFAFA;
 }
 .formData.error input{
-    border-color:#e54858;
+    border-color:#911C1C;
+    margin-bottom: 5px;
 }
   
 .formData.error small{
-    color: #e54858;
+    color: #911C1C;
     visibility: visible;
 }
   
 .formData{
-    color: white;
+    color: #312E2E;
 }
   
 .hidden{
     display: none;
+}
+
+.formconfirm{ 
+    color: #312E2E;
+    padding: 0 50px 0 50px;
+    /* margin: 7px 0; */
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+textarea#asking {
+    height: 150px;
+    outline: #911C1C;
+}
+
+div#photo_contact {
+    font-size: 35px;
+    width: 320px;
+    padding: -10px;
+    margin-top: -28px;
+    margin-bottom: 15px;
+}
+
+
+
+/* Responsive ****/ 
+
+@media screen and (max-width: 1290px) {
+
+.photographer_infos {
+    width: 100%;
+}
+
 }

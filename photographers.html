@@ -8,9 +8,10 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="photographers.css">
+
     <script type="module" src="photographers.js"></script>
 
-    <script src="modal.js"></script>
+    <script src="modal.js" defer></script>  <!-- method defer pour faire fonctionner modal.js apres que tout le html soit chargé-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +39,10 @@
     <div class="bground">
 
         <div class="content">
-          <span class="close" id="close"></span>
+          <span class="close" id="close" aria-label="Fermer"></span>
+          <div class="formconfirm hidden"> 
+            <span> Merci votre formulaire est validé </span>
+          </div>
           
           <div class="modal-body">
             <form id="form"
@@ -46,6 +50,12 @@
               action="index.html"
               method="get"
               onsubmit="return checkInputs();">
+
+              <div id="photo_contact">
+                  Contactez-moi 
+                  Nabell staaarteek
+
+              </div>
 
               <div class="formData">
                 <label for="first">Prénom</label><br>
@@ -78,6 +88,16 @@
                 <small>Error message</small>
               </div>
 
+              <div class="formData">
+                <label for="asking">Votre message</label><br>
+                <textarea 
+                  class="text-control"
+                  type="text"
+                  id="asking"
+                  name="asking"></textarea>
+                <small>Error message</small>
+              </div>
+
               <input
                 class="btn-submit button"
                 type="submit"
@@ -89,62 +109,9 @@
 
     <!--menu dropdown -->
 
-    <section class="images">
+    <section id="images">
 
-    <figure>
-        <img src="img/Ellie Rose/Architecture_Connected_Curves.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Architecture_Cross_Bar.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Architecture_Horseshoe.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Architecture_Water_on_Modern.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Architecture_White_Light.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Sport_Jump.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Sport_Next_Hold.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Sport_Race_End.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/Sport_Sky_Cross.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <video src="img/Ellie Rose/Sport_Tricks_in_the_air.mp4">
-        <figcaption>Text test </figcaption>
-    </figure>
-
-    <figure>
-        <img src="img/Ellie Rose/sport_water_tunnel.jpg">
-        <figcaption>Text test </figcaption>
-    </figure>
+    
 
     </section>
 

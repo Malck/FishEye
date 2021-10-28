@@ -53,6 +53,27 @@ main{
     margin: 0 20px;
 }
 
+/* Bouton scroll *** */
+
+a#main-link {
+    color: #000;
+    background: #DB8876;
+    width: 180px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    display: none; 
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 8px;
+}
+
+/* Section des photographers */ 
+
 #photographers{
     display: flex;
     justify-content: space-around;
@@ -101,17 +122,17 @@ article p {
 
 #photographers .location{
     color: #901C1C;
-    font-size: 13px;
+    font-size: 15px;
     /*font-size: 16px meilleur size */
 }
 
 #photographers .tagline{
-    font-size: 10px;
+    font-size: 13px;
 }
 
 #photographers .price{
     color: #757575 ;
-    font-size: 9px;
+    font-size: 12px;
     /*font-size: 15px  meilleur size */
 }
 
@@ -121,11 +142,13 @@ article p {
 #photographers li{
     border: 1px solid lightgrey;
     border-radius: 25px;
-    padding: 1px 6px;
+    padding: 2px 6px;
     color: #901C1C;
     margin: 2px;
     font-size: 12px;
 }
+
+/* Responsive */ 
 
 @media screen and (min-width: 1150px) {
 
