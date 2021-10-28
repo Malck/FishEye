@@ -1,3 +1,5 @@
+// Formulaire event
+
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -19,5 +21,107 @@ function launchModal() {
 function closeModal() {
   modalbg.style.display = "none";
 }
+
+const form = document.getElementById("form");
+const first = document.getElementById("first");
+const last = document.getElementById("last");
+const email = document.getElementById("email");
+const asking = document.getElementById("asking");
+const formConfirm = document.querySelector(".formconfirm");
+
+// function pour definir l'erreure et la validation d'un input 
+
+function setErrorFor(input, message) {
+    const formControl = input.parentElement; // div .formData
+    const small = formControl.querySelector('small');
+    // add error message in small 
+    small.innerText = message;
+    // add error class 
+    formControl.className = 'formData error';
+}
+  
+function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.className = "formData success";
+}
+
+let isFormValid = false;
+
+function isEmail(email){
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  }
+// fonction principale du formulaire empecher l'envois par default et valider les champs
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    checkInputs();
+    
+    if(isFormValid){
+      form.remove();
+      formConfirm.classList.remove("hidden");
+    }
+  console.log("récupération des inputs du form");  
+  console.log("prenom: "+first.value, "nom: "+last.value, "email: "+email.value);
+  console.log("message: "+asking.value);
+});
+
+function checkInputs() {
+    const firstValue = first.value.trim();
+    const lastValue = last.value.trim();
+    const emailValue = email.value.trim(); 
+    const askingValue = asking.value.trim();
+
+    let fields = {
+      firstName: false,
+      lastName: false,
+      email: false,
+      asking: false,
+    };
+    
+    if(firstValue === '' || first.value.length < 2) {             // Prenom checking  
+      setErrorFor(first, 'Le prénom doit etre renseigné');
+    } else {
+      setSuccessFor(first);
+      fields.firstName = true;
+    }
+  
+    if(lastValue === '' || last.value.length < 2 ){                 // Nom de famille checking 
+      setErrorFor(last, "Le nom doit faire plus de 2 caractères");
+    } else {
+      setSuccessFor(last);
+      fields.lastName = true;
+    }
+   
+    if(emailValue === ""){                         //Email checking  
+      setErrorFor(email, "Email à remplir ");                              
+    } else if (!isEmail(emailValue)) {
+      setErrorFor(email, "Email invalid");
+    } else { 
+      setSuccessFor(email);
+      fields.email = true;
+    }
+
+    if(askingValue === ""){
+      setErrorFor(asking, "Ecrivez un message")
+    } else {
+      setSuccessFor(asking);
+      fields.asking = true;
+    }
+    
+
+let fieldsValues = Object.values(fields);
+  console.log('fieldsValues', fieldsValues);
+
+  if (fieldsValues.includes(false) == true) {
+    console.log("Le formulaire n'est pas valide.");
+    return false;
+  }
+  if (fieldsValues.includes(false) == false) {
+    console.log("Le formulaire est valide.");
+    isFormValid = true;
+    return true;
+  }
+} 
 
 
