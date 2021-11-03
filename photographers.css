@@ -10,7 +10,7 @@ article {
     width: 100%;
 }
 
-article img{
+.photographer_infos img{
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -39,26 +39,39 @@ article p {
 .photographer_text h2{
     color: #D3573C ;
     font-size: 40px;
-    padding-bottom: 18px;
+    padding-bottom: 20px;
 }
 
 .photographer_text .location{
     color: #901C1C;
-    font-size: 16px;
+    font-size: 17px;
     /*font-size: 16px meilleur size */
 }
 
 .photographer_text .tagline{
+    font-size: 15px;
+}
+.photographer_tags{
+    display: flex;
+}
+.photographer_tags a{
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 2px 6px;
+    color: #901C1C;
+    margin: 2px;
     font-size: 14px;
+    font-weight: 500;
 }
 
-/* Bouton de la form contacteme */ 
+
+/* Bouton de la form contactme */ 
 button.btn-signup.modal-btn {
-    position: fixed;
-    left: 0;
-    right: 0;
+    position: absolute;
+    left: 120px;
+    right: 0px;
     margin: 0 auto;
-    top: 40%;
+    top: 24%;
     width: 150px;
     background: #911C1C;
     color: #FFFFFF;
@@ -66,35 +79,126 @@ button.btn-signup.modal-btn {
     border: gray;
     border-radius: 5px;
     font-size: 18px;
+    cursor: pointer;
 }
+button.btn-signup:hover{
+    color: black;
+    background-color: #DB8876;
+    border: #DB8876 1px solid;
+}
+
 
 #photographerPage {
     position: relative;
 }
 
+/* Menu dropDown **********/
+
+.alldrop {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.alldrop h2{
+    padding-right: 40px;
+}
+.dropdown {
+    max-width: 180px;
+    border-radius: 5px;
+    background: #911C1C;
+    overflow: hidden;
+}
+
+.btn-top{
+    padding: 10px 20px;
+    /* width: 100%; */
+    width: 180px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    background: #911C1C;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+
+.btn-top i {
+    width: 20px;
+}
+.bloc-links{
+    padding: 0 20px;
+    transition: height 0.4s ease-in-out;
+    height: 0;
+}
+.bloc-links li{
+    padding: 10px 0px ;
+    border-top: 2px white solid;
+    font-size: 20px;
+}
+.bloc-links li a{
+    color: #FFFFFF;
+}
+/* .bloc-links li:last-child{
+    padding-bottom: 10px;
+} */
+
+/*
+.dropdown {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+button.btn-drop {
+    background: #911C1C;
+    width: 170px;
+    height: 50px;
+    color: #FFFFFF;
+    border-radius: 5%;
+    border-width: 0;
+    font-size: 17px;
+}
+.btn-drop span {
+    padding-right: 14px;
+}  */ 
+
+
+
 
 /* ***************** utilisation d'image depuis le html pour tester la mise en place */
 
-.images img{
- width: 250px;
- height: 250px;
- object-fit: cover;
-}
-.images video{
-    width: 250px;
- height: 250px;
- object-fit: cover;
- 
-
-}
-figure {
-    padding: 50px;
-}
-section.images {
+section#images {
     display: flex;
     justify-content: space-between;
-    height: 900px;
     flex-wrap: wrap;
+    margin: 20px;
+}
+section#images article{
+    width: 33%;
+}
+section#images img{
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    /* margin-right: 50px; */
+    border-radius: 5px;
+}
+figcaption {
+    display: flex;
+    justify-content: space-between;
+    color: #911C1C;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 0 0;
+}
+a.image_likes {
+    display: flex;
+    flex-direction: row;
 }
 
 /* formulaire style */
@@ -186,7 +290,7 @@ input.btn-submit.button {
   padding-top: 10px;
 }
 
-/* formulaire champs verifiés en action avec js */
+/* formulaire champs verifiés en action avec js ******************************************************************/
 .formData small{
     visibility: hidden;
     font-size: 18px;
@@ -217,7 +321,7 @@ input.btn-submit.button {
     padding: 0 50px 0 50px;
     /* margin: 7px 0; */
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 23px;
 }
 
 textarea#asking {
@@ -226,7 +330,7 @@ textarea#asking {
 }
 
 div#photo_contact {
-    font-size: 35px;
+    font-size: 40px;
     width: 320px;
     padding: -10px;
     margin-top: -28px;
@@ -234,13 +338,123 @@ div#photo_contact {
 }
 
 
+/* Box compteur de likes ***************************************************************************************/
+
+#box {
+    width: 310px;
+    height: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: fixed;
+    bottom: 0px;
+    right: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #DB8876;
+    color: #000000;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.boxlikes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.boxlikes_number {
+    margin-right: 10px;
+}
+.boxlikes_heart {
+    width: 18px;
+}
+
 
 /* Responsive ****/ 
+header img { 
+    width: 200px;
+    margin: 10px 20px 10px 20px;
+}
+@media screen and (min-width: 1150px){
+
+    header img { 
+        width: 200px;
+        margin: 10px 20px 10px 20px;
+    }
+}
 
 @media screen and (max-width: 1290px) {
 
 .photographer_infos {
     width: 100%;
 }
-
 }
+
+@media screen and (max-width: 1160px){
+
+    section#images article {
+        width: unset ;
+    }
+    section#images {
+        justify-content: space-around;
+    }
+    }
+
+@media screen and (max-width: 830px) {
+
+    button.btn-signup.modal-btn {
+        width: 170px;
+        position: fixed;
+        top: unset;
+        bottom: 20px;
+        left: 0;
+    }
+    section#images article {
+        width: unset ;
+    }
+    #box{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .alldrop {
+        display: none;
+    }
+    .photographer_infos {
+       background: unset;
+       padding: 0;
+    }
+    .photographer_infos img{
+        width: 150px;
+        height: 150px;
+    }
+    .photographer_text {
+        margin-left: 0;
+        width: calc(100% - 140px);
+    }
+    .photographer_text h2{
+        font-size: 25px;
+    }
+    .photographer_text .location {
+        font-size: 17px;
+    }
+    .photographer_text .tagline {
+        font-size: 13px;
+    }
+    .photographer_tags a {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 475px){
+    .photographer_infos img{
+        width: 100px;
+        height: 100px;
+        margin-bottom: 50px;
+        margin-left: 30px;
+    }
+}
+
+
+

@@ -28,14 +28,18 @@ header ul{
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
-
 }
-header ul a{
+header ul li{
     text-decoration: none;
     border: 1px solid lightgrey;
-    border-radius: 25px;
-    padding: 4px 8px;
+    border-radius: 15px;
+    padding: 2px 7px;
     color:#901C1C;
+}
+header ul li:hover, 
+li.actived {
+    background-color: #901C1C;
+    color: #fff;
 }
 header img{
     width: 200px;

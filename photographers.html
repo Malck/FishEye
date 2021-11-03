@@ -12,10 +12,13 @@
     <script type="module" src="photographers.js"></script>
 
     <script src="modal.js" defer></script>  <!-- method defer pour faire fonctionner modal.js apres que tout le html soit chargé-->
+  
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -52,9 +55,7 @@
               onsubmit="return checkInputs();">
 
               <div id="photo_contact">
-                  Contactez-moi 
-                  Nabell staaarteek
-
+              <!--Ajouter en js le nom du photographe de la page-->
               </div>
 
               <div class="formData">
@@ -108,15 +109,50 @@
     </div>
 
     <!--menu dropdown -->
+    <div class="alldrop">
+      <h2>Trier par</h2>
+      <div class="dropdown">
+        <button class="btn-top">
+          <span class="popular">Popularité</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="bloc-links">
+          <ul>
+            <li>
+              <a href="#" class="date">Date</a>
+            </li>
+            <li>
+              <a href="#"class="titre">Titre</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="dropdown.js" ></script>
 
     <section id="images">
-
-    
+    <!-- Fill with js testImage -->
 
     </section>
 
     <!--Lightbox -->
+
+    <div id="box" aria-label="photographer likes and price">
+
+      <div class="boxlikes">
+
+          <h2 class="boxlikes_number" id="boxlikes_number"></h2>
+
+          <div class="boxlikes_heart">
+              <i class="fas fa-heart"></i>
+          </div>
+
+        </div>
+        <h2 class="box_price" id="box_price"></h2>
+    </div>
     </main>
+    
+  
 
 </body>
 </html>
