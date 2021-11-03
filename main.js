@@ -22,6 +22,8 @@ function displayPhotographers(data) {
 
         let articlePhotographers = document.createElement('article');
 
+        articlePhotographers.className = photographe.tags.join(' ') + ' articlePh';
+
         let templatePhotographer = `
             <a href="photographers.html?id=${photographe.id}" title="${photographe.name}">
                 <img src="img/${photographe.portrait}">
@@ -36,11 +38,31 @@ function displayPhotographers(data) {
             
         sectionPhotographers.appendChild(articlePhotographers);
         articlePhotographers.innerHTML = templatePhotographer;
+
     })
 }
 
-
 // Ajouter la selection par tag 
+function filterTag() {
+
+    const filtre = document.querySelectorAll("ul"); 
+    
+    filtre.addEventListener('click', event => {
+        let classValue = event.target.classList.value;
+    
+        if (-1 === classValue.indexOf('actived')) {
+            event.target.classList.add('actived')
+        } else {
+            event.target.classList.remove('actived')
+        }
+      console.log("hallo");
+    });
+    console.log("helooo");
+}
+
+
+
+
 
 // tag event listener 
 
@@ -48,7 +70,6 @@ function displayPhotographers(data) {
 // else ( display none ) console.log("filtrage")
 
 // photographe.tags.includes()
-
 
 
 // Scroll button qui aparait et disparait 
