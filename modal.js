@@ -51,7 +51,10 @@ let isFormValid = false;
 function isEmail(email){
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   }
-// fonction principale du formulaire empecher l'envois par default et valider les champs
+
+
+// Fonction principale du formulaire, empecher l'envois par default et valider les champs
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -61,7 +64,7 @@ form.addEventListener('submit', (e) => {
       form.remove();
       formConfirm.classList.remove("hidden");
     }
-  console.log("récupération des inputs du form");  
+  console.log("Récupération des données du formulaire");  
   console.log("prenom: "+first.value, "nom: "+last.value, "email: "+email.value);
   console.log("message: "+asking.value);
 });
@@ -109,10 +112,8 @@ function checkInputs() {
       fields.asking = true;
     }
     
-
 let fieldsValues = Object.values(fields);
-  console.log('fieldsValues', fieldsValues);
-
+  
   if (fieldsValues.includes(false) == true) {
     console.log("Le formulaire n'est pas valide.");
     return false;
@@ -123,5 +124,6 @@ let fieldsValues = Object.values(fields);
     return true;
   }
 } 
+
 
 
