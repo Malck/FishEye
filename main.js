@@ -6,6 +6,7 @@ async function GetDataFishEye() {
     const data = await response.json();
     displayPhotographers(data)
     console.log(data);
+    filterTag(data.photographers)
 }
 
 GetDataFishEye()
@@ -22,7 +23,9 @@ function displayPhotographers(data) {
 
         let articlePhotographers = document.createElement('article');
 
-        articlePhotographers.className = photographe.tags.join(' ') + ' articlePh';
+        articlePhotographers.className = photographe.tags.join(' ') + ' articlePh' ;
+        articlePhotographers.id = "Ph-"+photographe.id;
+
 
         let templatePhotographer = `
             <a href="photographers.html?id=${photographe.id}" title="${photographe.name}">
@@ -43,23 +46,39 @@ function displayPhotographers(data) {
 }
 
 // Ajouter la selection par tag 
-function filterTag() {
+function filterTag(photographers){
 
-    const filtre = document.querySelectorAll("ul"); 
-    
-    filtre.addEventListener('click', event => {
-        let classValue = event.target.classList.value;
-    
-        if (-1 === classValue.indexOf('actived')) {
-            event.target.classList.add('actived')
-        } else {
-            event.target.classList.remove('actived')
-        }
-      console.log("hallo");
-    });
-    console.log("helooo");
+    const filtres = document.querySelectorAll(".filters li"); 
+
+    /*const articlePh = document.querySelectorAll("article"); */
+
+
+    filtres.forEach(function(li){
+
+        li.addEventListener("click", event => {
+
+            console.log(event.target);
+
+            // ajouter une classe pour styliser le li et le laisser en rouge background quand cliquer 
+            // event.target.giveAttribute("redbackground")
+
+            const value = event.target.getAttribute("data-filter");
+            console.log(value);
+
+            photographers.forEach(function (photographe) {
+                console.log(document.querySelector(`#Ph-${photographe.id}`));
+
+                if(photographe.tags.includes(value) ) {
+                     document.querySelector(`#Ph-${photographe.id}`).style.display = "flex";
+                } else {
+                    document.querySelector(`#Ph-${photographe.id}`).style.display = "none";
+                }
+                 
+            })
+     
+         });
+      });
 }
-
 
 
 

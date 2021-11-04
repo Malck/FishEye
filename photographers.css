@@ -188,6 +188,13 @@ section#images img{
     /* margin-right: 50px; */
     border-radius: 5px;
 }
+section#images video {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    /* margin-right: 50px; */
+    border-radius: 5px;
+}
 figcaption {
     display: flex;
     justify-content: space-between;

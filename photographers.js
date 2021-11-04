@@ -2,10 +2,8 @@ async function GetDataFishEye() {
   const url = 'photographers.json';
   const response = await fetch(url) ; 
   const data = await response.json();
-   console.log("precharge");
   displayPhotographersPage(data)
-  testImage(data);
-   console.log("fin")
+  displayMedia(data);
 }
 
 GetDataFishEye()
@@ -14,10 +12,7 @@ GetDataFishEye()
 
 function displayPhotographersPage(data) { 
     
-  let photographersData = data.photographers;
-
-  let id = window.location.search.split('id=')[1];
-  let photographers = !id ? photographersData : photographersData.filter(photographer => photographer.id == id);
+  let photographer = getPhotographer(data);
   
   let sectionPhotographerPage = document.getElementById("photographerPage");
   let photographerPage = document.createElement('article'); // document.createElement('article class="${photographers.name"') pour cibler un article a passer en display none?
@@ -26,15 +21,15 @@ function displayPhotographersPage(data) {
   <div class="photographer_infos">
 
     <div class="photographer_text"> 
-    <h2>${photographers[0].name}</h2>
-    <p class="location">${photographers[0].city}, ${photographers[0].country}</p>
-    <p class="tagline">${photographers[0].tagline}</p> 
-    <p class="photographer_tags">${photographers[0].tags.map(tag => 
+    <h2>${photographer.name}</h2>
+    <p class="location">${photographer.city}, ${photographer.country}</p>
+    <p class="tagline">${photographer.tagline}</p> 
+    <p class="photographer_tags">${photographer.tags.map(tag => 
       `<a class="tags" href="index.html">#${tag}</a>`).join(" ")}</p>
     </div> 
 
     <div class="photographer_image">
-    <a href="#"> <img src="img/${photographers[0].portrait}"></a>
+    <a href="#"> <img src="img/${photographer.portrait}"></a>
     </div>
   </div>
   `
@@ -47,7 +42,7 @@ function displayPhotographersPage(data) {
   let sectionPhotographerName = document.getElementById("photo_contact");
   let templatePhotographerName = `
   Contactez-moi
-  ${photographers[0].name}
+  ${photographer.name}
   `
   sectionPhotographerName.innerHTML = templatePhotographerName;
   
@@ -55,48 +50,92 @@ function displayPhotographersPage(data) {
   
   let sectionPhotographerPrice= document.getElementById("box_price");
   
-  let templatePhotographerPrice = ` ${photographers[0].price}€ / jour`
+  let templatePhotographerPrice = ` ${photographer.price}€ / jour`
   
   sectionPhotographerPrice.innerHTML = templatePhotographerPrice;
 
 
 }
+// nouvelle fonction get photographe
 
+function getPhotographer(data) {
+
+  let photographersData = data.photographers;
+  let id = window.location.search.split('id=')[1];
+  let photographers = !id ? photographersData : photographersData.filter(photographer => photographer.id == id);
+
+  return photographers[0];
+
+}
   
 
 // Test d'une fonction avec map pour afficher les images du photographe 
-function testImage(data) {
+function displayMedia(data) {
+
   let photographersMedia = data.media;
+  let photographer = getPhotographer(data);
+
+  let photographerName = photographer.name.split(" ")[0];
+
   console.log(photographersMedia);
 
   let id = window.location.search.split('id=')[1];
   let medias = !id ? photographersMedia : photographersMedia.filter(media => media.photographerId == id);
   console.log(medias);
 
+  let like = 0
+
   medias.map(imagin => {
 
   let sectionPhotographerImages = document.getElementById("images");
   let photographerImages = document.createElement('article');
+  console.log(imagin.image != undefined);
 
-  let templatePhotographerImages = `
-  <section class="photographer_images"> 
+  let templatePhotographerImages = ""
 
-  <figure>
-  <img src="img/Mimi/${imagin.image}">
-  <figcaption>
-  ${imagin.title}
-  <a class="image_likes">
-  ${imagin.likes}
-  <i class="fas fa-heart"></i>
-  </a>
-  </figcaption>
-  </figure>
-  </section>
-`
+  if(imagin.image != undefined) {
+
+    templatePhotographerImages = `
+    <section class="photographer_images"> 
+  
+    <figure>
+    <img src="img/${photographerName}/${imagin.image}">
+    <figcaption>
+    ${imagin.title}
+    <a class="image_likes">
+    ${imagin.likes}
+    <i class="fas fa-heart"></i>
+    </a>
+    </figcaption>
+    </figure>
+    </section>
+  `
+  } else {
+    templatePhotographerImages = `
+    <section class="photographer_images"> 
+  
+    <figure>
+    <video controls="controls" src="img/${photographerName}/${imagin.video}" title="${imagin.title}">
+    </video>
+    <figcaption>
+    ${imagin.title}
+    <a class="image_likes">
+    ${imagin.likes}
+    <i class="fas fa-heart"></i>
+    </a>
+    </figcaption>
+    </figure>
+    </section>
+  `
+  }
 
   sectionPhotographerImages.appendChild(photographerImages);
   photographerImages.innerHTML = templatePhotographerImages;
   console.log("displayImage");
+
+  like += imagin.likes
+  /* like = like + 1 
+     like += 1 */
   
   })
 
@@ -104,11 +143,12 @@ function testImage(data) {
 
   let sectionPhotographerLikes= document.getElementById("boxlikes_number");
   
-  let templatePhotographerLikes = ` ${medias.likes}`
+  let templatePhotographerLikes = ` ${like}`
   
   sectionPhotographerLikes.innerHTML = templatePhotographerLikes;
 }
 
+/* griefer un element addevenet listener click sur les a images_likes */
 
 
 
