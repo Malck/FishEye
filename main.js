@@ -1,4 +1,4 @@
-// recuperer les données json 
+// FUNCTION PRINCIPALE ET RECUPERATION DES DONNEES DEPUIS LE JSON
 
 async function GetDataFishEye() {
     const url = 'photographers.json';
@@ -11,7 +11,7 @@ async function GetDataFishEye() {
 
 GetDataFishEye()
 
-// utiliser la fonction pour construire les profils
+/////////////////////////////    UTILISER LA FUNCTION POUR CONSTRUIRE LES PROFILS DES PHOTOGRAPHES   /////////////////////////
 
 function displayPhotographers(data) { 
 
@@ -24,8 +24,8 @@ function displayPhotographers(data) {
         let articlePhotographers = document.createElement('article');
 
         articlePhotographers.className = photographe.tags.join(' ') + ' articlePh' ;
-        articlePhotographers.id = "Ph-"+photographe.id;
 
+        articlePhotographers.id = "Ph-"+photographe.id;
 
         let templatePhotographer = `
             <a href="photographers.html?id=${photographe.id}" title="${photographe.name}">
@@ -41,19 +41,18 @@ function displayPhotographers(data) {
             
         sectionPhotographers.appendChild(articlePhotographers);
         articlePhotographers.innerHTML = templatePhotographer;
-
     })
 }
 
-// Ajouter la selection par tag 
+//////////////////////////////             AJOUTER LA SELECTION PAR TAG             //////////////////
+
 function filterTag(photographers){
 
     const filtres = document.querySelectorAll(".filters li"); 
 
     /*const articlePh = document.querySelectorAll("article"); */
 
-
-    filtres.forEach(function(li){
+    filtres.forEach(function(li) {
 
         li.addEventListener("click", event => {
 
@@ -76,22 +75,11 @@ function filterTag(photographers){
                  
             })
      
-         });
-      });
+        });
+    });
 }
 
-
-
-
-// tag event listener 
-
-// if ( tag include "travel") display block  return true ;
-// else ( display none ) console.log("filtrage")
-
-// photographe.tags.includes()
-
-
-// Scroll button qui aparait et disparait 
+/////////////////////////           SCROLL BUTTON QUI APPARAIT ET DISPARAIT           //////////////////////////////////
 
 function scrollButton() {
     window.addEventListener("scroll", () => {
