@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="photographers.css">
+    <link rel="stylesheet" href="lightbox.css">
 
     <script type="module" src="photographers.js"></script>
 
@@ -23,13 +24,13 @@
 
 <body>
 
-    <header>
+  <header>
         <a class="home" href="index.html">
             <img src="img/fisheye-logo.png" alt="Logo du site">
         </a>
-    </header>
+  </header>
 
-    <main>
+  <main>
 
     <section id="photographerPage" aria-label="photographerPage">
      <!-- fill with photographers.js -->
@@ -104,30 +105,24 @@
                 type="submit"
                 value="Envoyer"/>
             </form>
-            </div>
-        </div>
-    </div>
+         </div>
+      </div>
+  </div>
 
     <!--menu dropdown -->
-    <div class="alldrop">
-      <h2>Trier par</h2>
-      <div class="dropdown">
-        <button class="btn-top">
-          <span class="popular">Popularité</span>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="bloc-links">
-          <ul>
-            <li>
-              <a href="#" class="date">Date</a>
-            </li>
-            <li>
-              <a href="#"class="titre">Titre</a>
-            </li>
+    <div class="works-sort">
+      <span id="sort-text">Trier par</span>
+      <div id="sort-wrapper">
+          <button class="sort-btn" aria-haspopup="listbox">Popularité</button>
+          <span class="fas fa-chevron-down arrow-down-open" role='button'></span>
+          <ul class="hidden-sort" role="listbox">
+              <li class="sort" role='option'>Popularité <span class="fas fa-chevron-up arrow-up-close"></span>
+              </li>
+              <li class="sort" role='option'>Date</li>
+              <li class="sort" role='option'>Titre</li>
           </ul>
-        </div>
       </div>
-    </div>
+  </div>
     <script src="dropdown.js" ></script>
 
     <section id="images">
@@ -136,7 +131,25 @@
     </section>
 
     <!--Lightbox -->
+    <div class="preview-box">
+      <div class="details">
+        <span class="icon fas fa-times"></span>
+      </div>
+        <div class="img-box">
+          <div class="slide prev">
+            <i class="fas fa-angle-left"></i>
+          </div>
+          <div class="slide next">
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <img src="" alt="">
+          <video controls="controls" src="" alt=""></video>
+        </div>
+        <span class="title"> je suis le titre </span>
+    </div>
+    <div class="shadow"></div>
 
+    <!--Likes and Price orangbox -->
     <div id="box" aria-label="photographer likes and price">
 
       <div class="boxlikes">
@@ -150,7 +163,7 @@
         </div>
         <h2 class="box_price" id="box_price"></h2>
     </div>
-    </main>
+  </main>
     
   
 

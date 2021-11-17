@@ -54,8 +54,8 @@ function displayPhotographersPage(data) {
   
   sectionPhotographerPrice.innerHTML = templatePhotographerPrice;
 
-
 }
+
 // nouvelle fonction get photographe
 
 function getPhotographer(data) {
@@ -98,33 +98,39 @@ function displayMedia(data) {
     templatePhotographerImages = `
     <section class="photographer_images"> 
   
-    <figure>
+    <div class="figure">
     <img src="img/${photographerName}/${imagin.image}">
-    <figcaption>
-    ${imagin.title}
-    <a class="image_likes">
-    ${imagin.likes}
-    <i class="fas fa-heart"></i>
-    </a>
-    </figcaption>
-    </figure>
+    </div>
+
+    <div class="figcaption">
+
+    <div class="titre">${imagin.title}</div>
+    <div class="image_likes" data-filter="${imagin.title}" id="image.likes">
+    <p>${imagin.likes}</p>
+    <i class="far fa-heart .like"></i>
+    </div>
+
+    </div>
+
     </section>
   `
   } else {
     templatePhotographerImages = `
     <section class="photographer_images"> 
   
-    <figure>
-    <video controls="controls" src="img/${photographerName}/${imagin.video}" title="${imagin.title}">
+    <div class="figure">
+    <video controls="controls" src="img/${photographerName}/${imagin.video}" title="${imagin.title}">   
     </video>
-    <figcaption>
-    ${imagin.title}
-    <a class="image_likes">
-    ${imagin.likes}
-    <i class="fas fa-heart"></i>
-    </a>
-    </figcaption>
-    </figure>
+    </div>
+
+    <div class="figcaption">
+    <div class="titre">${imagin.title}</div>
+    <div class="image_likes" data-filter="${imagin.title}" >
+    <p>${imagin.likes}</p>
+    <i class="far fa-heart .like"></i>
+    </div>
+    </div>
+
     </section>
   `
   }
@@ -136,8 +142,99 @@ function displayMedia(data) {
   like += imagin.likes
   /* like = like + 1 
      like += 1 */
-  
+
   })
+
+
+// Lightbox 
+
+ const gallery = document.querySelectorAll("#images .figure");
+ const previewBox = document.querySelector(".preview-box");
+ const closeIcon = previewBox.querySelector(".icon");
+ const previewImg = previewBox.querySelector("img");
+ const previewVideo = previewBox.querySelector("video");
+ const shadow = document.querySelector(".shadow");
+
+
+ // once window loaded
+  for (let k = 0; k < gallery.length; k++ ) {
+    let newIndex = k;
+    let clickImgIndex;
+      gallery[k].onclick = () =>{
+        clickImgIndex = newIndex;
+        console.log(k);
+
+        function preview(){
+
+         if(gallery[newIndex].querySelector("img")){
+          let selectedImgUrl = gallery[newIndex].querySelector("img").src;
+          previewImg.src = selectedImgUrl;
+          previewVideo.style.display = "none";
+          previewImg.style.display = "block"
+
+        }else if(gallery[newIndex].querySelector("video")){
+          let selectedImgUrl = gallery[newIndex].querySelector("video").src;
+          previewVideo.src = selectedImgUrl;
+          previewImg.style.display = "none";
+          previewVideo.style.display = "block";
+        } 
+      }
+      //button next and prev 
+      const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      if(newIndex == 0){
+        prevBtn.style.display = "none";
+      }
+      if(newIndex >= gallery.length -1){
+        nextBtn.style.display ="none";
+      }
+      prevBtn.onclick = () =>{
+        newIndex--;
+        if(newIndex == 0){
+          preview();
+          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+          prevBtn.style.display = "none";
+        }else{
+          preview();
+          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+          nextBtn.style.display = "block";
+        }
+      }
+      nextBtn.onclick = () =>{
+        newIndex++;
+        if(newIndex >= gallery.length - 1){
+          preview();
+          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+          nextBtn.style.display = "none";
+        }else{
+          preview();
+          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+          prevBtn.style.display = "block";
+        }
+      }
+      
+      preview();
+      previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+
+      previewBox.classList.add("show");
+      shadow.style.display = "block";
+
+      //document.querySelector("body").style.overflow = "hidden";
+      
+
+      closeIcon.onclick = () =>{
+        newIndex = clickImgIndex;
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+        previewBox.classList.remove("show");
+        shadow.style.display = "none";
+
+        //document.querySelector("body").style.overflow = "hidden";
+
+      }
+
+    } 
+}
 
 // Afficher le nombre de likes du photographe dans la box compteur orange 
 
@@ -146,9 +243,56 @@ function displayMedia(data) {
   let templatePhotographerLikes = ` ${like}`
   
   sectionPhotographerLikes.innerHTML = templatePhotographerLikes;
+
+// Fonction des ajouts et diminutions des likes 
+function globalLikes(){
+
+  const likeHeart = document.querySelectorAll(".image_likes i"); 
+  //console.log(likeHeart);
+
+  likeHeart.forEach(function(a) {
+   console.log(a);
+    
+   a.addEventListener("click", event => {
+
+    console.log(event.target);
+    
+    let counterLike = event.target.parentNode.firstElementChild; // égal a images_likes p ( le chiffre de like sur la photo)
+    let likeValue = parseInt(counterLike.innerText);
+    console.log(likeValue);
+    let totalLikes = parseInt(document.getElementById('boxlikes_number').innerHTML);
+    console.log(totalLikes);
+
+
+    //vérifier si la "balise a" contient la classe "like-yes"
+    if(event.target.classList.contains("like-yes")){
+      console.log("remove favorite");
+      event.target.classList.remove("like-yes");
+      event.target.classList.remove("fas");
+      counterLike.innerHTML = --likeValue;
+      document.getElementById('boxlikes_number').innerHTML = --totalLikes ;
+
+     }else{
+      console.log("add favorite");
+      event.target.classList.add("like-yes");
+      event.target.classList.add("fas");
+      counterLike.innerHTML = ++likeValue;
+      document.getElementById('boxlikes_number').innerHTML = ++totalLikes ;
+     }
+ 
+    });
+
+  });
+
+}
+globalLikes();
+
 }
 
-/* griefer un element addevenet listener click sur les a images_likes */
+
+
+
+
 
 
 
