@@ -15,7 +15,7 @@ function displayPhotographersPage(data) {
   let photographer = getPhotographer(data);
   
   let sectionPhotographerPage = document.getElementById("photographerPage");
-  let photographerPage = document.createElement('article'); // document.createElement('article class="${photographers.name"') pour cibler un article a passer en display none?
+  let photographerPage = document.createElement('article'); 
 
   let templatePhotographerPage = `
   <div class="photographer_infos">
@@ -35,7 +35,7 @@ function displayPhotographersPage(data) {
   `
   sectionPhotographerPage.appendChild(photographerPage);
   photographerPage.innerHTML = templatePhotographerPage;
-  console.log("displaypage");
+  console.log("displayPhotographerPage");
 
 // Afficher le nom du photographe dans le formulaire 
 
@@ -56,7 +56,9 @@ function displayPhotographersPage(data) {
 
 }
 
-// nouvelle fonction get photographe
+
+
+// Nouvelle fonction get photographe
 
 function getPhotographer(data) {
 
@@ -67,9 +69,11 @@ function getPhotographer(data) {
   return photographers[0];
 
 }
-  
 
-// Test d'une fonction avec map pour afficher les images du photographe 
+
+  
+// Afficher les images/video du photographe avec une fonction map 
+
 function displayMedia(data) {
 
   let photographersMedia = data.media;
@@ -89,64 +93,19 @@ function displayMedia(data) {
 
   let sectionPhotographerImages = document.getElementById("images");
   let photographerImages = document.createElement('article');
-  console.log(imagin.image != undefined);
+  // console.log(imagin.image != undefined); // on regarde si l'element est une image donc true sinon false 
 
-  let templatePhotographerImages = ""
-
-  if(imagin.image != undefined) {
-
-    templatePhotographerImages = `
-    <section class="photographer_images"> 
-  
-    <div class="figure">
-    <img src="img/${photographerName}/${imagin.image}">
-    </div>
-
-    <div class="figcaption">
-
-    <div class="titre">${imagin.title}</div>
-    <div class="image_likes" data-filter="${imagin.title}" id="image.likes">
-    <p>${imagin.likes}</p>
-    <i class="far fa-heart .like"></i>
-    </div>
-
-    </div>
-
-    </section>
-  `
-  } else {
-    templatePhotographerImages = `
-    <section class="photographer_images"> 
-  
-    <div class="figure">
-    <video controls="controls" src="img/${photographerName}/${imagin.video}" title="${imagin.title}">   
-    </video>
-    </div>
-
-    <div class="figcaption">
-    <div class="titre">${imagin.title}</div>
-    <div class="image_likes" data-filter="${imagin.title}" >
-    <p>${imagin.likes}</p>
-    <i class="far fa-heart .like"></i>
-    </div>
-    </div>
-
-    </section>
-  `
-  }
+  let templatePhotographerImages = mediaFactory(imagin,photographerName);  // egal a let templatePhotographerImages = mediaFactory(imagin); appeller dans la factory.js
 
   sectionPhotographerImages.appendChild(photographerImages);
   photographerImages.innerHTML = templatePhotographerImages;
-  console.log("displayImage");
+  console.log("displayDuMedia");
 
-  like += imagin.likes
-  /* like = like + 1 
-     like += 1 */
-
+  like += imagin.likes /* like = like + 1 pareil que like += 1 */
+  
   })
 
-
-// Lightbox 
+// Lightbox sur les images et la video
 
  const gallery = document.querySelectorAll("#images .figure");
  const previewBox = document.querySelector(".preview-box");
@@ -155,72 +114,85 @@ function displayMedia(data) {
  const previewVideo = previewBox.querySelector("video");
  const shadow = document.querySelector(".shadow");
 
-
- // once window loaded
-  for (let k = 0; k < gallery.length; k++ ) {
+ // Boucle
+ for (let k = 0; k < gallery.length; k++ ) {
     let newIndex = k;
-    let clickImgIndex;
-      gallery[k].onclick = () =>{
+    let clickImgIndex;  // va servir a recuper la bonne photo au click apres avoir fermer la lightbox et non pas la derniere qu'on a fait defiler apres ce click sur cette image 
+
+    gallery[k].onclick = () =>{
         clickImgIndex = newIndex;
         console.log(k);
 
         function preview(){
 
          if(gallery[newIndex].querySelector("img")){
-          let selectedImgUrl = gallery[newIndex].querySelector("img").src;
-          previewImg.src = selectedImgUrl;
-          previewVideo.style.display = "none";
-          previewImg.style.display = "block"
+            let selectedImgUrl = gallery[newIndex].querySelector("img").src;
+            previewImg.src = selectedImgUrl;
+            previewVideo.style.display = "none";
+            previewImg.style.display = "block"
 
-        }else if(gallery[newIndex].querySelector("video")){
-          let selectedImgUrl = gallery[newIndex].querySelector("video").src;
-          previewVideo.src = selectedImgUrl;
-          previewImg.style.display = "none";
-          previewVideo.style.display = "block";
-        } 
-      }
-      //button next and prev 
-      const prevBtn = document.querySelector(".prev");
-      const nextBtn = document.querySelector(".next");
-      if(newIndex == 0){
-        prevBtn.style.display = "none";
-      }
-      if(newIndex >= gallery.length -1){
-        nextBtn.style.display ="none";
-      }
-      prevBtn.onclick = () =>{
-        newIndex--;
+          }else if(gallery[newIndex].querySelector("video")){
+            let selectedImgUrl = gallery[newIndex].querySelector("video").src;
+            previewVideo.src = selectedImgUrl;
+            previewImg.style.display = "none";
+            previewVideo.style.display = "block";
+          } 
+        }
+
+        //button next and prev 
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+
         if(newIndex == 0){
-          preview();
-          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
           prevBtn.style.display = "none";
-        }else{
-          preview();
-          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
-          nextBtn.style.display = "block";
         }
-      }
-      nextBtn.onclick = () =>{
-        newIndex++;
-        if(newIndex >= gallery.length - 1){
-          preview();
-          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
-          nextBtn.style.display = "none";
-        }else{
-          preview();
-          previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
-          prevBtn.style.display = "block";
+        if(newIndex >= gallery.length -1){
+          nextBtn.style.display ="none";
         }
-      }
-      
+
+        prevBtn.onclick = () =>{
+          newIndex--;
+          if(newIndex == 0){
+            preview();
+            previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+            prevBtn.style.display = "none";
+          }else{
+            preview();
+            previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+            nextBtn.style.display = "block";
+          }
+        }
+        nextBtn.onclick = () =>{
+          newIndex++;
+          if(newIndex >= gallery.length - 1){
+            preview();
+            previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+            nextBtn.style.display = "none";
+          }else{
+            preview();
+            previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
+            prevBtn.style.display = "block";
+          }
+        }
+        
+        document.addEventListener("keyup", (key) => {
+        
+          if(newIndex > 0 && key.code == "ArrowLeft" ){
+           prevBtn.click();
+          
+          }else if (newIndex < gallery.length - 1 && key.code == "ArrowRight"){
+           nextBtn.click();
+
+          }else if(key.code == "Escape"){
+            closeIcon.click();
+          }
+
+        })
+        
       preview();
       previewBox.querySelector("span.title").innerText = gallery[newIndex].nextElementSibling.querySelector(".figcaption .titre").innerText;
-
       previewBox.classList.add("show");
       shadow.style.display = "block";
-
-      //document.querySelector("body").style.overflow = "hidden";
-      
 
       closeIcon.onclick = () =>{
         newIndex = clickImgIndex;
@@ -228,13 +200,19 @@ function displayMedia(data) {
         nextBtn.style.display = "block";
         previewBox.classList.remove("show");
         shadow.style.display = "none";
-
-        //document.querySelector("body").style.overflow = "hidden";
-
       }
-
+      
+    
     } 
-}
+
+  }
+  document.addEventListener("keyup", (key) => {
+
+    if(key.code =="Enter" && document.activeElement.querySelector(".figure")){
+     document.activeElement.querySelector(".figure").click();
+     
+    }
+  })
 
 // Afficher le nombre de likes du photographe dans la box compteur orange 
 
@@ -245,49 +223,41 @@ function displayMedia(data) {
   sectionPhotographerLikes.innerHTML = templatePhotographerLikes;
 
 // Fonction des ajouts et diminutions des likes 
-function globalLikes(){
 
-  const likeHeart = document.querySelectorAll(".image_likes i"); 
-  //console.log(likeHeart);
+  function globalLikes(){
 
-  likeHeart.forEach(function(a) {
-   console.log(a);
+   const likeHeart = document.querySelectorAll(".image_likes i"); 
+
+    likeHeart.forEach(function(a) {
     
-   a.addEventListener("click", event => {
-
-    console.log(event.target);
+      a.addEventListener("click", event => {
     
-    let counterLike = event.target.parentNode.firstElementChild; // égal a images_likes p ( le chiffre de like sur la photo)
-    let likeValue = parseInt(counterLike.innerText);
-    console.log(likeValue);
-    let totalLikes = parseInt(document.getElementById('boxlikes_number').innerHTML);
-    console.log(totalLikes);
+        let counterLike = event.target.parentNode.firstElementChild; // égal a images_likes p ( le chiffre de like sur la photo)
+        let likeValue = parseInt(counterLike.innerText);
+        let totalLikes = parseInt(document.getElementById('boxlikes_number').innerHTML);
+        
+        //Vérifier si le coeur est liké ( contient la class fas ) ou pas 
+        if(event.target.classList.contains("fas")){
+          console.log("remove favorite");
+          event.target.classList.remove("fas");
+          counterLike.innerHTML = --likeValue;
+          document.getElementById('boxlikes_number').innerHTML = --totalLikes ;
 
-
-    //vérifier si la "balise a" contient la classe "like-yes"
-    if(event.target.classList.contains("like-yes")){
-      console.log("remove favorite");
-      event.target.classList.remove("like-yes");
-      event.target.classList.remove("fas");
-      counterLike.innerHTML = --likeValue;
-      document.getElementById('boxlikes_number').innerHTML = --totalLikes ;
-
-     }else{
-      console.log("add favorite");
-      event.target.classList.add("like-yes");
-      event.target.classList.add("fas");
-      counterLike.innerHTML = ++likeValue;
-      document.getElementById('boxlikes_number').innerHTML = ++totalLikes ;
-     }
+        }else{
+          console.log("add favorite");
+          event.target.classList.add("fas");
+          counterLike.innerHTML = ++likeValue;
+          document.getElementById('boxlikes_number').innerHTML = ++totalLikes ;
+        }
  
+      });
+
     });
 
-  });
+  }
+ globalLikes();
 
-}
-globalLikes();
-
-}
+} // fermeture de la fonction displayMedia(data) 
 
 
 
