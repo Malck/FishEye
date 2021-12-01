@@ -12,6 +12,13 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event 
 closeModalBtn.addEventListener("click", closeModal);
 
+document.addEventListener("keyup", (key) => {
+  if(key.code == "Escape"){
+   // modalbg.style.display = "none";
+   closeModalBtn.click();
+  }
+})
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -65,8 +72,8 @@ form.addEventListener('submit', (e) => {
       formConfirm.classList.remove("hidden");
     }
   console.log("Récupération des données du formulaire");  
-  console.log("prenom: "+first.value, "nom: "+last.value, "email: "+email.value);
-  console.log("message: "+asking.value);
+  console.log("Prenom: "+first.value, "Nom: "+last.value, "Email: "+email.value);
+  console.log("Message: "+asking.value);
 });
 
 function checkInputs() {
