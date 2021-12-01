@@ -35,6 +35,7 @@ header ul li{
     border-radius: 15px;
     padding: 2px 7px;
     color:#901C1C;
+    cursor: pointer;
 }
 header ul li:hover, 
 li.actived {
@@ -74,6 +75,7 @@ a#main-link {
     left: 0;
     right: 0;
     top: 8px;
+    z-index: 20;
 }
 
 /* Section des photographers */ 
