@@ -1,5 +1,6 @@
-# MalcolmCoutteel_6_07102021
-Projet FishEye
+## Openclassrooms Project 6 
+
+Create an accessible website for a platform of photographers
 
 
 Data :
