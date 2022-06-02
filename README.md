@@ -3,12 +3,14 @@
 Create an accessible website for a platform of photographers
 
 
-Data :
+
+
+- Data :
  
   On récupère les données dans le fichier photographers.json avec la fonction GetDataFishEye 
  
  
-Factory :
+- Factory :
  
   - mediaFactory va verifier si le media est une image ou une video 
  
@@ -17,7 +19,7 @@ Factory :
   - videoFactory crée la structure pour une video 
   
   
- Page d'accueil : 
+- Page d'accueil : 
  
   - La fonction displayPhotographers va afficher les differents profils des photographes en utilisant une fonction map a l'interieur
  
@@ -26,7 +28,7 @@ Factory :
   - La fonction scrollButton va faire apparaitre le bouton pour retourner en haut de la page 
  
  
- Pages des Photographes : 
+ - Pages des Photographes : 
  
   - La fonction displayPhotographersPage crée le profil du photographe sur sa page 
  
