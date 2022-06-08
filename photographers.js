@@ -11,6 +11,7 @@ async function GetDataFishEye() {
 
   console.log(photographersMedia);
 
+  //On recupere l'id de la page sur laquelle on se trouve et qui correspond a l'id d'un photographe pour ensuite n'afficher que ses données 
   let id = window.location.search.split("id=")[1];
   let medias = !id
     ? photographersMedia

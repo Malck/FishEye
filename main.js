@@ -26,9 +26,11 @@ function displayPhotographers(data) {
         articlePhotographers.className = photographe.tags.join(' ') + ' articlePh' ;
 
         articlePhotographers.id = "Ph-"+photographe.id;
-
+        
+        //Pour chaque profil de photographe on va retrouver cette construction et un a href="photographers.html?id=${photographe.id}" 
+        //On va pouvoir utiliser cette url dans photgraphers.html pour filtrer et afficher un seul photographe 
         let templatePhotographer = `
-            <a href="photographers.html?id=${photographe.id}" title="${photographe.name}">
+            <a href="photographers.html?id=${photographe.id}" title="${photographe.name}"> 
                 <img src="img/${photographe.portrait}">
                 <h2 class="name">${photographe.name}</h2>
             </a>
